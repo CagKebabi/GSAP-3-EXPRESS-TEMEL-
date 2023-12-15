@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="tweenExample-satır29" style="width: 20px;height: 20px;background-color: orange;"></div>
+    <div class="tweenExample-satır33" style="width: 20px;height: 20px;background-color: orange;margin-top: 50px;"></div>
+    <div style="margin-top: 50px;">
+        <div class="tweenExample-satır40" style="width: 20px;height: 20px;background-color: orange;margin-top: 20px;"></div>
+        <div class="tweenExample-satır40" style="width: 20px;height: 20px;background-color: orange;margin-top: 20px;"></div>
+        <div class="tweenExample-satır40" style="width: 20px;height: 20px;background-color: orange;margin-top: 20px;"></div>
+    </div>
+    <div style="margin-top: 50px;">
+        <div class="tweenExample-satır47" style="width: 20px;height: 20px;background-color: orange;margin-top: 25px;"></div>
+        <div class="tweenExample-satır47" style="width: 20px;height: 20px;background-color: orange;margin-top: 25px;"></div>
+        <div class="tweenExample-satır47" style="width: 20px;height: 20px;background-color: orange;margin-top: 25px;"></div>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+<script>
+    //Bu derste gsap objesine ve tweens ve timelane lara görsel bir bakış atıcaz
+    //Önceki gsap sürümlerinde 
+    //TweenLite
+    //TweenMax
+    //TimelineLite
+    //TimelineMax
+    //Gibi araçlar bulunurdu yeni gsap 3.0 sürümünde bunların hepsi yerine gsap object geldi.
+    //gsap object si gsapin yapabildiği herşeye erişim aracımızdır bunlara örnek olarak
+    //Animasyon oluşturmak
+    //Ayarları düzenlemek
+    //Plugin lere erişmek, eases ve effektlere erişmek
+    //Tüm animasyonlar üzerinde kontrolü sağlamak
+    //Bu kursta daha çok animasyon oluşturma üzerine olacaktır
+    //Gsap objesinin tween oluşturmak ve isteğe bağlı olarak bunları zaman çizelgelerine(timeline) eklemek için 3 ana yöntemi vardır. bunlar;
+    // gsap.to() - gsap.from() - gsap.fromTo()
+    //Tekniğe geçmeden önce tween ve timeline ın ne olduğuna bir bakalım
+    //TWEEN : Zaman içinde tek bir nesnenin tek bir özelliğini değiştirebilir. Aşağıda ilgili örnek verilmiştir.
+    gsap.to(".tweenExample-satır29", {x:750, duration:3}) //ilk parametre target yani ulaşmak istediğimiz element ikinci parametre ise vars objesidir yani animasyon değerleridir.
+    //Tween birden fazla parameteyi bir obje üzerinde belirlenen süre içerisinde değiştirebilir. Aşağıda ilgili örnek verilmiştir
+    gsap.to(".tweenExample-satır33", {x:750, scale:2, rotation:360, backgroundColor:"red", duration:3})
+    //TWEEN : Zaman içinde birden fazla nesenenin birden fazla özelliğini değiştirebilir. Aşağıda ilgili örnek verilmiştir
+    gsap.to(".tweenExample-satır40", {x:750, scale:2, rotation:180, backgroundColor:"blue", duration:3})
+    //stagger parametresi kendisine yazılan değere göre girilen animasyon parametrelerini sırayla iligli elementlere uygular
+    gsap.to(".tweenExample-satır47", {stagger:3, x:750, rotation:360, backgroundColor:"rebeccapurple", duration:3})
+</script>
+</html>
