@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="basicTween-satır17" style="width: 200px;height: 200px;background-color: aqua;margin-top: 50px;"></div>
+    <div class="basicTween-satır22" style="width: 200px;height: 200px;background-color: aqua;margin-top: 50px;"></div>
+    <div class="basicTween-satır28" style="width: 200px;height: 200px;background-color: aqua;margin-top: 50px;"></div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+<script>
+    //Bu derste önceki derslerle benzer olarak basic tween oluşturmayı öğreneceğiz.
+    //Aşağıda gsap objesiyle to() animasyonu oluşturacağız.gsap.to()
+    //gsap.to() ile nesnenin nereye doğru hareket edeceğini belirleyebilirz to() nun içerisindeki ilk parametremiz target yani elementimiz
+    //Diğeri ise animasyon değerleini gireceğimiz vars objesidir
+    gsap.to(".basicTween-satır17", {x:400}) 
+    //Ekran yüklendiği anda elementimizin duration değeri girmemize rağmen 1saniye duration ı olduğunu görebiliriz
+    //Bunun sebebi GSAP3 ün varsayılan durtion değeri olmasından kaynaklanır bu varsayılan değer 0.5 saniyedir
+    //Fakat biz istediğimiz gibi duration değeride girebilirz
+    //Ayrıca varsaylan duration değerini
+    gsap.defaults({duration:1})
+    //Yukarıdaki örnekte olduğu gibi değiştirebiliriz.
+    gsap.to(".basicTween-satır22", {x:400, duration:15}) 
+    //Tarayıcıda x veya y değeri verdiğimiz elementi incelersek animasyon devam ettiği sürece x ve y değerini translate3d() olarak verir
+    //Animasyon bittiğinde ise transalte() değeri olarak değişir.Bunun sebebi translate3d() ile animasyonları daha performanslı bir şekilde çalıştırmasından kaynaklanır
+    //Animasyon oluştururken elementleri css in transform özellikleriyle oluşturmak performans açısından daha iyidir.
+    //Bunun sebebi css in pğacit veya transform özellikleri dışındaki değerlerin değiştirilmesi tarayıcının sayfa layout unu tekrar yüklemesine
+    //Neden olabilir.Buda aşırı durumlarda performansı olumsuz etkiler.Fakat bu birkaç tween için sorun teşkil etmez. 
+    //Fakat bu diğer özellikler ile animasyon oluşturamayacağımız anlamına gelmez.Aşağıda transform özellikleriyle bir animasyon oluşturduk.
+    gsap.to(".basicTween-satır28", {x:400, y:200, scale:3, rotation:360, duration:3}) 
+    //Elementlerimize ulaşırken gsapın string selectorünü kullanırız bu css ile aynı mantıkta çalışır "img" - ".img" - "#img" gibi
+
+    //BASIC-TWEEN
+    //Bu derste gsap.to() metodu ile tween oluşturduk
+    //gsap.to("".basicTween-satır17" , {x:400}) string selector ile istediğimiz elementlere ulaştık ve vars object ile istediğimiz değerleri girdik.
+    //GSAP ın varsayılan duration değerinin 500ms olduğunu öğrendik ve bu varsayılan değeri özelleştirebiliceğimizi öğrendik
+    //En iyi performans için CSS Transform ve opacity değerlerini kullanmamız gerektiğini öğrendik.
+    //x ve y 
+    //rotation, rotationX, rotationY, (gsap 3D de iyi performans gösterir)
+    //scaleX, scaleY, veya sadece scale
+    //skewX, skewY
+    //Bunlar gsapın en iyi performansı gösterdiği değerlerdir.Fakat önceden de beirttiğimiz gibi bu diğer css değerlerini kullanamayacağımız anlamına gelmez
+    //GSAP aynı zamanda herhangi bir sayısal özelliğide değiştirebilir.Aşağıdaki gibi;
+    //width, height
+    //top ve left (position relative, fixed veya absolute verirsek çalışır)
+    //borderRadius *tireli (-) css özellikleri camelCase ile yazılmalıdır
+    //color / backgroundColor
+    //vh, vw ve çok daha fazlası!
+</script>
+</html>

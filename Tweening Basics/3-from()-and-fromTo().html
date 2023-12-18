@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="from-satır15" style="width: 200px;height: 200px;background-color: aqua;margin-top: 50px;"></div>
+    <div class="fromTo-satır18" style="width: 200px;height: 200px;background-color: aqua;margin-top: 50px;"></div>
+    <div class="fromTo-satır23" style="width: 200px;height: 200px;background-color: aqua;margin-top: 250px;"></div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+<script>
+    //Bu derste önceki derslerden öğrendiğimiz gsap.to() metodu dışında gsap.from() ve gsap.fromTo() metodlarını öğreneceğiz.
+    //gsap.from() elementimizin belirlediğimiz değerlerden başlangıç yani varsayılan özelliklerine dönmesini sağlar.
+    gsap.from(".from-satır15", {x:400, y:200, scale:3, duration:3})
+    //gsap.fromTo() da ise iki adet var objesi yazarız ilk var objesi başlangıç ikincisi ise varış değerleridir.
+    gsap.fromTo(".fromTo-satır18", {x:400, y:400}, {x:700,y:200, scale:3, duration:5})
+    //gsap.fromTo() örneğinde başlangıç değerine opacity:0 verirsek varış değerinde opacity belirlemezsek birşey göremeyiz çünkü animasyon boyunca
+    //opacity:0 olarak kalır fakat aşağıdaki gibi başlangıç ve varış değerlerine opacity verirsek animasyonumuzu verdiğimiz değerlere
+    //doğrultusunda görebiliriz.En iyi sonuçları görebilmek için başlangıç ve varış vars değerlerinin aynı özelliklere sahip olduğundan emin olmalıyız
+    gsap.fromTo(".fromTo-satır23", {x:200, y:400, opacity:0}, {x:400, y:200, scale:1.5,opacity:1, duration:5})
+</script>
+</html>
