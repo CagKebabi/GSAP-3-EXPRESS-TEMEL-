@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>CORE EASE ÖZELLİKLERİ</h1>
+    <div>NONE</div>
+    <div class="ease-none" style="width: 200px;height: 200px;background-color: aqua;margin-top: 50px;"></div>
+    <div>POWER1</div>
+    <div class="ease-power1" style="width: 200px;height: 200px;background-color: aqua;margin-top: 50px;"></div>
+    <div>POWER2</div>
+    <div class="ease-power2" style="width: 200px;height: 200px;background-color: aqua;margin-top: 50px;"></div>
+    <div>POWER3</div>
+    <div class="ease-power3" style="width: 200px;height: 200px;background-color: aqua;margin-top: 50px;"></div>
+    <div>POWER4</div>
+    <div class="ease-power4" style="width: 200px;height: 200px;background-color: aqua;margin-top: 50px;"></div>
+    <div>BACK</div>
+    <div class="ease-back" style="width: 200px;height: 200px;background-color: aqua;margin-top: 50px;"></div>
+    <div class="ease-back-out" style="width: 200px;height: 200px;background-color: aqua;margin-top: 50px;"></div>
+    <div>BOUNCE</div>
+    <div class="ease-bounce" style="width: 200px;height: 200px;background-color: aqua;margin-top: 50px;"></div>
+    <div>CIRC</div>
+    <div class="ease-circ" style="width: 200px;height: 200px;background-color: aqua;margin-top: 50px;"></div>
+    <div>ELASTIC</div>
+    <div class="ease-elastic" style="width: 200px;height: 200px;background-color: aqua;margin-top: 50px;"></div>
+    <div class="ease-elastic-out" style="width: 200px;height: 200px;background-color: aqua;margin-top: 50px;"></div>
+    <div>EXPO</div>
+    <div class="ease-expo" style="width: 200px;height: 200px;background-color: aqua;margin-top: 50px;"></div>
+    <div>SINE</div>
+    <div class="ease-sine" style="width: 200px;height: 200px;background-color: aqua;margin-top: 50px;"></div>
+    <div>STEPS</div>
+    <div class="ease-steps" style="width: 200px;height: 200px;background-color: aqua;margin-top: 50px;"></div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+<script>
+    //Bu derste https://gsap.com/docs/v3/Eases/ adresindeki dökümanda yer alan ease özelliklerini inceleyeceğiz
+
+    //-CORE- Özellikleri (Bu özelliklerin none hariç hepsi .in .out .inOut değerlerini alabilir)
+    //none 
+    gsap.to(".ease-none", {x:700, duration:3, ease:"none"})
+    //power1
+    gsap.to(".ease-power1", {x:700, duration:3, ease:"power1"})
+    //power2
+    gsap.to(".ease-power2", {x:700, duration:3, ease:"power2"})
+    //power3
+    gsap.to(".ease-power3", {x:700, duration:3, ease:"power3"})
+    //power4
+    gsap.to(".ease-power4", {x:700, duration:3, ease:"power4"})
+    //back .out() ile taşma uznuluğu belirlenebilir
+    gsap.to(".ease-back", {x:700, duration:3, ease:"back"})
+    gsap.to(".ease-back-out", {x:700, duration:3, ease:"back.out(3)"})
+    //bounce
+    gsap.to(".ease-bounce", {x:700, duration:3, ease:"bounce"})
+    //circ
+    gsap.to(".ease-circ", {x:700, duration:3, ease:"circ"})
+    //elastic .out() ile elastic parametreleri değiştirlebilir 1 parametre taşma uzunluğu ikinci parametre ise elastic değerini belirler
+    gsap.to(".ease-elastic", {x:700, duration:3, ease:"elastic"})
+    gsap.to(".ease-elastic-out", {x:700, duration:3, ease:"elastic.out(1.5,0.1)"})
+    //expo
+    gsap.to(".ease-expo", {x:700, duration:3, ease:"expo"})
+    //sine
+    gsap.to(".ease-sine", {x:700, duration:3, ease:"sine"})
+    //steps () içerisinde kaç adımda animasyonun oynatılacağını belirleriz
+    gsap.to(".ease-steps", {x:700, duration:3, ease:"steps(5)"})
+
+    //-EXTRA- Özelliklerine döküman üzerinde bakmak daha anlaşılabilir olacaktır.
+    //rough
+    //slow
+    //expoScale
+    //CustomEase
+
+    //-Club GSAP- Özelliklerine döküman üzerinde bakmak daha anlaşılabilir olacaktır.
+    //CustomBounce
+    //CustomWiggle
+
+    //Ekstra kolaylaştırıcı kaynaklar
+    //https://codepen.io/snorkltv/pen/ExVQzKM?editors=0010
+    //https://www.creativecodingclub.com/courses/take/b-sides-bonuses-and-oddities/texts/9605677-apply-a-customease-to-a-motionpath-tween
+    //https://www.youtube.com/watch?v=U2VYIOd4EEc&t=8s
+    //https://www.creativecodingclub.com/courses/take/gsap3-special-eases/texts/9490497-slowmo-overview
+</script>
+</html>

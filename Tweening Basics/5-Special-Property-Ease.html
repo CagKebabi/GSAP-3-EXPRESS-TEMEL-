@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="ease-satır20" style="width: 200px;height: 200px;background-color: aqua;margin-top: 50px;"></div>
+    <div class="ease-satır21" style="width: 200px;height: 200px;background-color: aqua;margin-top: 50px;"></div>
+
+    <div class="ease-satır27" style="width: 200px;height: 200px;background-color: aqua;margin-top: 50px;"></div>
+    <div class="ease-satır28" style="width: 200px;height: 200px;background-color: aqua;margin-top: 50px;"></div>
+    <div class="ease-satır29" style="width: 200px;height: 200px;background-color: aqua;margin-top: 50px;"></div>
+
+    <div class="ease-satır35" style="width: 200px;height: 200px;background-color: aqua;margin-top: 50px;"></div>
+    <div class="ease-satır36" style="width: 200px;height: 200px;background-color: aqua;margin-top: 50px;"></div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+<script>
+    //Ease animasyonumuz oynatılırken değişimin hızını kontrol eder
+    //Basit kullanımlarda ease animasyonun nasıl yavaşlayacağını ve hızlanacağını kontrol edecektir.
+    //Ease isteğe göre animasyon bitişinde(varsayılan), animasyon başlangıcında veya her ikisinde de uygulanabilir.
+    //GSAP da bir ease değeri vermesek dahi aynı duration da olduğu gibi ease in de varsayılan değeri vardır bu değer ease-out dur 
+    //Böylece animasyonumuz başlangıçta hızlanır bitişte yavaşlar
+    //Aşağıda varsayılan ease değeri olan bir element ve linear yani yavaşlama ve hızlanma olmadan hareket eden bir elementin örneği bulunmaktadır
+    gsap.to(".ease-satır20", {x:600, duration:3}) //ease yazmasakta varsayılan değeri ease-out dur
+    gsap.to(".ease-satır21", {x:600, duration:3, ease:"linear"}) //linear yavaşlama veya hızlanma olmadan sabit hızda hareket eden ease dir
+    //Ease hareketlerinin başlangıçta, sonda(varsayılan) veya hem başlangıç hemde sonda uygulamak için aşağıdaki derğerleri kullanmamız gerekir
+    gsap.to(".ease-satır27", {x:600, duration:3, ease:"bounce"}) //Ease animasyon sonunda uygulanır (varsayılan)
+    gsap.to(".ease-satır28", {x:600, duration:3, ease:"bounce.in"}) //Ease animasyon başlangıcında uygulanır 
+    gsap.to(".ease-satır29", {x:600, duration:3, ease:"bounce.inOut"}) //Ease animasyon başlangıcında ve sonunda uygulanır 
+    //Ease ler aynı zamanda yapılandırılabilir(configure) aşağıda ease:"back" kullanacağız bu ease animasyonun elementi bitiş noktasından
+    //Biraz daha ileri götürüp yerine getirir.Ease imizi () ile configure edeceğiz
+    gsap.to(".ease-satır35", {x:600, duration:3, ease:"back"})
+    gsap.to(".ease-satır36", {x:600, duration:3, ease:"back(6)"}) //Ease verdiğimiz değeri göre elementi daha fazla dışarı çıkartmış oldu
+
+    //Tüm ease lere https://gsap.com/docs/v3/Eases/ adresindeki dökümandan bakılabilir.
+</script>
+</html>
