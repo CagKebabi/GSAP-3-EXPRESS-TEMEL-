@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container {
+            height: 300px;
+            width: 100%;
+            border: 1px solid black;
+            display: flex;
+            align-items: flex-end;
+        }
+        .container > div {
+            width: 100%;
+            display: flex;
+            justify-content: space-evenly;
+        }
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="boxes">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+    </div>
+    <div class="container">
+        <div id="boxes2">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+    </div>
+    <div class="container">
+        <div id="boxes3">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+<script>
+    //Stagger bir tween içerisindeki birden fazla elementin başlangıç zamanını 
+    //Aşağıda stagger olmadan verilen örnekte stagger özelliği olmadan elementlerin hepsinin aynı anda hareket ettiğini görebiliriz
+    gsap.to("#boxes .box", {y:-100})
+    //Aşağıda stagger özelliği eklediğimiz örnekte staggera verdiğimiz saniyede sırasıyla birer elementi oynatacaktır 
+    gsap.to("#boxes2 .box", {y:-100, stagger:0.5}) //1 saniyede bir elementleri sırasıyla oynat dedik
+    //Aynı zamanda staggerı bir obje kullanarak diğer özelliklerinden faydalanabiliriz
+    gsap.to("#boxes3 .box", {y:-100, stagger:{
+        each:1, //obje olarak kullanmıyorken girdiğimiz değerle aynı işe yarar yani her elementin kaç saniyede oynatılacağını belirler
+        //amount: 1, //Bu değer each yerine kullanılabilir each den farklı olarak tüm elementleri belirtilen sürede sırayla oynatır.
+        from:"end" //"center"
+    }})
+</script>
+</html>
