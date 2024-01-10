@@ -4,9 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: aqua;
+        }
+    </style>
 </head>
 <body>
-    
+    <div class="box"></div>
+    <div>
+        <button id="play">play</button>
+        <button id="pause">pause</button>
+        <button id="reverse">reverse</button>
+        <button id="restart">restart</button>
+    </div>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+    <script>
+        //Gasap tweenlerimizi kontrol edebilmemiz için bize sunduğu tween kontrol parametreleri vardır.Bunlar aşağıdaki örnekte 
+        //işlevleri ile beraber gösterilmiştir.
+
+        //Öncelikle animasyonumuzun sayfa açıldığında otomatik başlamaması için paused:"true" değerini verdik ve tweenimize kontrolleri 
+        //uygulayabilmek için bir değişkene atadık
+        let tween = gsap.to(".box",{x:600, duration:3, ease:"linear", paused:true});
+
+        document.getElementById("play").onclick = () => tween.play();//tweeni başlatır
+        document.getElementById("pause").onclick = () => tween.pause();//tweeni durdurur
+        document.getElementById("reverse").onclick = () => tween.reverse();//tweeni geriye sarar
+        document.getElementById("restart").onclick = () => tween.restart();//tweeni tekrar başlar
+    </script>
 </body>
 </html>
