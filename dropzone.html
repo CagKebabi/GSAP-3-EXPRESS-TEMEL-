@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.css" integrity="sha512-7uSoC3grlnRktCWoO4LjHMjotq8gf9XDFQerPuaph+cqR7JC9XKGdvN+UwZMC14aAaBDItdRj3DcSDs4kMWUgg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+</head>
+<body>
+    <form action="/file-upload" class="dropzone" id="my-great-dropzone"> 
+        <div id="dropZone">
+            <input type="file">
+            <button>Add Files...</button>
+        </div>
+    </form>
+    <!-- <div id="dropZone">
+        <form action="/file-upload" class="dropzone" id="my-great-dropzone"></form>
+        <button>Add Files...</button>
+    </div> -->
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.js" integrity="sha512-9e9rr82F9BPzG81+6UrwWLFj8ZLf59jnuIA/tIf8dEGoQVu7l5qvr02G/BiAabsFOYrIUTMslVN+iDYuszftVQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    Dropzone.options.myGreatDropzone = { 
+        autoProcessQueue: false,
+        paramName: "file", 
+        maxFilesize: 2, 
+        clickable: "#dropZone" // the ID of our parent wrapper div
+    };
+</script>
+</html>
