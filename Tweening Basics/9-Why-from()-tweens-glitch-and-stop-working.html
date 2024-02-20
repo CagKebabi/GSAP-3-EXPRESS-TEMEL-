@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body, html {
+            width:100%;
+            height:100%;
+            overflow:hidden;
+        }
+
+        body {
+            display:flex;
+            align-items:center;
+            justify-content:center;
+        }
+        .button {
+            cursor:pointer;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background-color:darkblue;
+            border:1vmin solid black;
+            
+        }
+
+        .circle {
+            width:50vmin;
+            height:50vmin;
+            border-radius:50%;
+        }
+
+        .circle span {
+            color:white;
+            font-weight:800;
+            font-family: sans-serif;
+            font-size:13vmin;
+        }
+
+        .bg {
+            position:absolute;
+            background:white;
+            opacity:0.3;
+            will-change:transform;
+        }
+    </style>
+</head>
+<body>
+    <div class="circle button button1">
+        <div class="circle bg bg1"></div>
+        <span>hover<span>
+    </div>
+    <div class="circle button button2">
+        <div class="circle bg bg2"></div>
+        <span>hover<span>
+    </div>
+    <div class="circle button button3">
+        <div class="circle bg bg3"></div>
+        <span>hover<span>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+    <script>
+        //Ders başlığında belirtildiği from() ile oluşturulmuş bir animasyondaki kusuru ve mouse u birden fazla kez hızlıca hover 
+        //yaptığımızda neden çalışmadığını inceleyeceğiz.
+        //Aşağıda oluşturduğumuz örnekte mouse u birden fazla kez hızlı bir şekilde hover yaptığımızda hover animasyonumuzun bir süre sonra
+        //istediğimiz gibi çalışmadığını ve gittikçe hedefteki hover elementinin kaybolduğunu görürüz.Bunun sebebi gsap ile ilgili bir bug
+        //değildir.Gsapın from() u belirttiğimiz değerde mevcut değere animasyon uygular.Yani biz elemente hover yaptığımızda element
+        //scale 1 e henuz ulaşmadığı zamanki değeri aldığı ve from dan o değere uyguladığı için animasyonun bütünlüğü bozulur.
+        const button = document.querySelector(".button1")
+        const bg = document.querySelector(".bg1")
+        button.addEventListener("mouseenter", function(){
+            console.log(gsap.getProperty(bg, "scale"))//Daha iyi anlaşılması için her hover yaptığımızda bg elementimizin scale değerini yazdıracağız.Bu yazdırılan değer fromdan yani scale 0 dan hedefe uygulanan  değerdir
+            gsap.from(bg, {scale:0, duration:1, ease:"circ"})
+        })
+
+        //ÇÖZÜM 1
+        //Bu tarz bir sorunla karşılaşmamak için fromTo() ile başlangıçın yanında birde varış değeri varış değeri verebiliriz
+        const button2 = document.querySelector(".button2")
+        const bg2 = document.querySelector(".bg2")
+        button2.addEventListener("mouseenter", function(){
+            gsap.fromTo(bg2, {scale:0, duration:1},{scale:1,ease:"circ"})
+        })
+
+        //ÇÖZÜM 2 
+        //tween imizi fromTo eventlistener dışında yazıp eventlistener içerisine tween.reastart() kodu ile animasyonu tekrar oynatabilitiz
+        const button3 = document.querySelector(".button3")
+        const bg3 = document.querySelector(".bg3")
+
+        const tween = gsap.fromTo(bg3, {scale:0, duration:1},{scale:1,ease:"circ"});
+        
+        button3.addEventListener("mouseenter", function(){
+            tween.restart();
+        })
+    </script>
+</body>
+</html>

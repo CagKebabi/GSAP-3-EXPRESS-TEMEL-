@@ -62,7 +62,7 @@
     //Aşağıda stagger olmadan verilen örnekte stagger özelliği olmadan elementlerin hepsinin aynı anda hareket ettiğini görebiliriz
     gsap.to("#boxes .box", {y:-100})
     //Aşağıda stagger özelliği eklediğimiz örnekte staggera verdiğimiz saniyede sırasıyla birer elementi oynatacaktır 
-    gsap.to("#boxes2 .box", {y:-100, stagger:0.5}) //1 saniyede bir elementleri sırasıyla oynat dedik
+    gsap.to("#boxes2 .box", {y:-100, stagger:1}) //1 saniyede bir elementleri sırasıyla oynat dedik
     //Aynı zamanda staggerı bir obje kullanarak diğer özelliklerinden faydalanabiliriz
     gsap.to("#boxes3 .box", {y:-100, stagger:{
         each:1, //obje olarak kullanmıyorken girdiğimiz değerle aynı işe yarar yani her elementin kaç saniyede oynatılacağını belirler
