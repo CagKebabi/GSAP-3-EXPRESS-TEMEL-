@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #title {
+            background-color: aqua;
+            font-size: 25px;
+            text-align: center;
+        }
+        #freds {
+            display: flex;
+            justify-content: center;
+        }
+        #freds img {
+            width: 15%;
+        }
+        #time {
+            background-color: antiquewhite;
+            font-size: 25px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="demo">
+        <div id="title">Meet The Freds</div>
+        <div id="freds">
+            <img src="/octopus.png" alt="">
+            <img src="/octopus.png" alt="">
+            <img src="/octopus.png" alt="">
+            <img src="/octopus.png" alt="">
+            <img src="/octopus.png" alt="">
+            <img src="/octopus.png" alt="">
+        </div>
+        <div id="time">
+            Sundays 9pm
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+    <script>
+        //Bu derste timeline ların neden önemli ve daha işlevsel olduğunu anlamamız için aşağıda bir örnek oluşturduk.
+        //Bu timeline kullanmadığımız örnekte örnmeğin bir tweende delay ı değiştirirsek diğerlerinde de animasyon bütünlüğünün 
+        //bozulmaması için delayı değiştirmemiz gerekir işte bu yüzden timeline kullanımı önemlidir.
+        //Sonraki derslerde timeline nın nasıl işlediğini ve kullanılacağını öğreneceğiz. 
+        gsap.from("#demo", {duration:1, opacity:0});
+        gsap.from("#title", {duration:1, delay:1, opacity:0, scale:0});
+        gsap.from("#freds img", {duration:0.5, delay:2, scale:0, stagger:0.5});
+        gsap.from("#time", {duration:1, delay:5, opacity:0, xPpercent:100});
+    </script>
+</body>
+</html>
