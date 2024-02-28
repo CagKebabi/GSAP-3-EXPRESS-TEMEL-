@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 100px;
+            background-color: cadetblue;
+        }
+        #star {
+            border-radius: 25%;
+        }
+        #circle {
+            border-radius: 50%;
+        }
+        #square {
+
+        }
+    </style>
+</head>
+<body>
+    <div style="display: flex;gap: 25px;">
+        <div id="star" class="box"></div>
+        <div id="circle" class="box"></div>
+        <div id="square" class="box"></div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+    <script>
+        //Pozisyon parametreleri bir timelanedaki tweenlerin başlangıç zamanını dengelememize ve değiştirmemize olanak tanır.
+        var animation = gsap.timeline();
+
+        animation
+        .to("#star",{y:"100px", duration:2})
+        .to("#circle",{y:"100px", duration:2})
+        .to("#square",{y:"100px", duration:2})
+    </script>
+</body>
+</html>
