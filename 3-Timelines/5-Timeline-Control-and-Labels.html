@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #demo {
+            overflow:hidden;
+            position:relative;
+            width:800px;
+            height:410px;
+            border:1px solid #333;
+            background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/32887/space-background.png);
+
+            }
+
+            #title {
+            position:absolute;
+            top:120px;
+            left:40px;
+            background-color: aqua;
+            font-size: 25px;
+            text-align: center;
+            }
+
+            #freds {
+            position:absolute;
+            top:250px;
+            left:20px;
+            }
+
+            #freds img {
+            width:122px;
+            }
+
+            #time {
+            position:absolute;
+            top:25px;
+            right:0;
+            background-color: antiquewhite;
+            font-size: 25px;
+            text-align: center;
+            }
+    </style>
+</head>
+<body>
+    <div id="demo">
+        <div id="title">Meet The Freds</div>
+        <div>
+            <button id="play">play</button>
+            <button id="pause">pause</button>
+            <button id="reverse">reverse</button>
+            <button id="restart">restart</button>
+            <button id="test">test</button>
+        </div>
+        <div id="freds">
+            <img src="/octopus.png" alt="">
+            <img src="/octopus.png" alt="">
+            <img src="/octopus.png" alt="">
+            <img src="/octopus.png" alt="">
+            <img src="/octopus.png" alt="">
+            <img src="/octopus.png" alt="">
+        </div>
+        <div id="time">
+            Sundays 9pm
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+    <script>
+        const animation = gsap.timeline()
+            .from("#demo", {duration:3,opacity:0})
+            .from("#title", {duration:3, opacity:0, scale:0, ease:"back"})
+            .from("#freds img", {y:160, stagger:0.1, duration:0.8, ease:"back"}) 
+            .add("test")
+            .from("#time", {xPercent:100, duration:1}) 
+
+        // animation.play("test")
+
+        //Bu derste timeline oynatmayı kontrol etme ve labellara ulaşmayı öğreneceğiz.
+        //Timeline, tween ile tamamen aynı kontrol yöntemlerine sahiptir. 
+        //Tweeni nasıl oynayacağınızı zaten bildiğiniz için, bir timeline ı nasıl play() yapacağınmızı zaten biliyorsunuz.(Tween Control dersinde öğrenmiştik)
+        
+        document.getElementById("play").onclick = () => animation.play()
+        document.getElementById("pause").onclick = () => animation.pause()
+        document.getElementById("reverse").onclick = () => animation.reverse()
+        document.getElementById("restart").onclick = () => animation.restart()
+        document.getElementById("test").onclick = () => animation.play("test")
+
+        //Örenğin bu animasyonumuzun #time tweeninde bazı değişiklikler yapmamız gerekiyor fakat bu değişiklikleri görmek için 
+        //her seferinde kendinde önceki tweenlerin oynatılmasını bekliyoruz kendinden önceki tweenleri hemen oynatıp istediğimiz
+        //tweeni hızlıca görmemiz için 73. satırın altına animation.play("test") i ekledik böylece bu koddan önceki tweenleri hızlıca
+        //oynatmış olduk.Tabi çalıştırmak için iste test olarak adalandırdığımız bu play() fonksiyonunu 77.satırda çalıştırdık.
+        //Oluşturmuş olduğumuz play("test") fonksiyonunu her seferinde değilde sadece istediğimiz zaman yeni oluşturmuş
+        //olduğumuz test idli butona tıkladığımızda çalışmasını istiyorsak 77.satırı yorum satırına aldık id si test olan
+        //bir buton oluşturduk ve o butona play("test") komutu olan onclik fonksiyonu ekledik
+
+    </script>
+</body>
+</html>

@@ -7,35 +7,53 @@
     <style>
         .box {
             width: 100px;
-            height: 100px;
+            height: 120px;
             background-color: cadetblue;
-        }
-        #star {
-            border-radius: 25%;
-        }
-        #circle {
-            border-radius: 50%;
-        }
-        #square {
-
         }
     </style>
 </head>
 <body>
+    <h1>Position Parameters</h1>
     <div style="display: flex;gap: 25px;">
-        <div id="star" class="box"></div>
-        <div id="circle" class="box"></div>
-        <div id="square" class="box"></div>
+        <div id="box1" class="box"></div>
+        <div id="box2" class="box">
+            <div>"+=1"</div>
+            <div>Bir önceki tween bittikten bir saniye sonra başlar</div>
+        </div>
+        <div id="box3" class="box">
+            <div>"-=1"</div>
+            <div>Bir önceki tween bittikten bir saniye önce başlatır.</div>
+        </div>
+        <div id="box4" class="box">
+            <div>"<"</div>
+            <div>Bir önceki tween başladığında başlatır.</div>
+        </div>
+        <div id="box5" class="box">
+            <div>"<1"</div>
+            <div>Bir önceki tweenin başlangıcından 1 saniye sonra başlatır.</div>
+        </div>
+        <div id="box6" class="box">
+            <div>1</div>
+            <div>Tweeni 1.nci saniyede başlatır</div>
+        </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
     <script>
         //Pozisyon parametreleri bir timelanedaki tweenlerin başlangıç zamanını dengelememize ve değiştirmemize olanak tanır.
+        //"+=1" Bir önceki tween bittikten bir saniye sonra başlatır.
+        //"-=1" Bir önceki tween bittikten bir saniye önce başlatır.
+        //"<"   Bir önceki tween başladığında başlatır.
+        //"<1"  Bir önceki tweenin başlangıcından 1 saniye sonra başlatır.
+        // 1    Tweeni 1.nci saniyede başlatır
         var animation = gsap.timeline();
 
         animation
-        .to("#star",{y:"100px", duration:2})
-        .to("#circle",{y:"100px", duration:2})
-        .to("#square",{y:"100px", duration:2})
+        .to("#box1",{y:"100px", duration:2})
+        .to("#box2",{y:"100px", duration:2}, "+=1") 
+        .to("#box3",{y:"100px", duration:2}, "-=1")
+        .to("#box4",{y:"100px", duration:2}, "<")
+        .to("#box5",{y:"100px", duration:2}, "<1")
+        .to("#box6",{y:"100px", duration:2}, 1)
     </script>
 </body>
 </html>

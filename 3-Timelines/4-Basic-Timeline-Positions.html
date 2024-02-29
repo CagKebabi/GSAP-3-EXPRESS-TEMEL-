@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #demo {
+            overflow:hidden;
+            position:relative;
+            width:800px;
+            height:410px;
+            border:1px solid #333;
+            background:url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/32887/space-background.png);
+
+            }
+
+            #title {
+            position:absolute;
+            top:120px;
+            left:40px;
+            background-color: aqua;
+            font-size: 25px;
+            text-align: center;
+            }
+
+            #freds {
+            position:absolute;
+            top:250px;
+            left:20px;
+            }
+
+            #freds img {
+            width:122px;
+            }
+
+            #time {
+            position:absolute;
+            top:25px;
+            right:0;
+            background-color: antiquewhite;
+            font-size: 25px;
+            text-align: center;
+            }
+    </style>
+</head>
+<body>
+    <div id="demo">
+        <div id="title">Meet The Freds</div>
+        <div id="freds">
+            <img src="/octopus.png" alt="">
+            <img src="/octopus.png" alt="">
+            <img src="/octopus.png" alt="">
+            <img src="/octopus.png" alt="">
+            <img src="/octopus.png" alt="">
+            <img src="/octopus.png" alt="">
+        </div>
+        <div id="time">
+            Sundays 9pm
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+    <script>
+        //Burada Basic Timeline Intro dersinde yaptığımız örneğe position parametreleri eklediğimiz bir örnek vardır.
+        gsap.timeline()
+            .from("#demo", {duration:5,opacity:0})
+            .from("#title", {opacity:0, scale:0, ease:"back"})
+            .from("#freds img", {y:160, stagger:0.5, duration:0.8, ease:"back"}, "+=2") //olması gerekenden 2 saniye geç başlattık
+            .from("#time", {xPercent:100, duration:0.2}, "<1") //kendinden bir önceki tweenin başlangıcından bir saniye sonra başlattık
+    </script>
+</body>
+</html>

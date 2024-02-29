@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=PT+Sans+Narrow:wght@700&family=Raleway:wght@900&display=swap");
+        * {
+        position: relative;
+        }
+        body {
+        color: white;
+        font-family: sans-serif;
+        background: rgb(34, 32, 32);
+        background: radial-gradient(
+            circle,
+            rgba(34, 32, 32, 1) 0%,
+            rgba(0, 0, 0, 1) 100%
+        );
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        margin: 50px;
+        }
+
+        .item {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        }
+
+        .dot {
+        width: 20px;
+        height: 20px;
+        background-color: #333;
+        border-radius: 50%;
+        margin-right: 10px;
+        }
+
+        .text {
+        color: #777;
+        font-family: Raleway;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin: 4px;
+        font-size: 40px;
+        white-space: nowrap;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="item">
+        <div class="dot"></div>
+        <div class="text">home</div>
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+      <script>
+        //Aşağıda gsap ile bir effet oluşturduğumuz animasyonu css ilede kolaylıkla oluşturabiliriz.
+        const item = document.querySelector(".item");
+
+        const tween = gsap.to(".text", {color:"white", paused:true}) //paused true ile animasyonun oynatılmasını engelledik böylece aşağıda yazdığımız fonksiyonlar ile animasyonu oynatıcaz veya geriye alıcaz
+
+        item.addEventListener("mouseenter", () => tween.play());
+        item.addEventListener("mouseleave", () => tween.reverse())
+        //Burada oluşturduğumuz örnek ise yukarudaki örnekten farklı olarak bir timeline içeriyor böylece animasyonumuzu daha düzenli
+        // const item = document.querySelector(".item");
+
+        // gsap.defaults({duration:0.3})
+
+        // const animation = gsap.timeline({paused:true})
+        // .to(".dot",{backgroundColor:"red"})
+        // .to(".text", {color:"white"}, "<0.2")
+
+        // item.addEventListener("mouseenter", () => animation.play());
+        // item.addEventListener("mouseleave", () => animation.reverse())
+      </script>
+</body>
+</html>
