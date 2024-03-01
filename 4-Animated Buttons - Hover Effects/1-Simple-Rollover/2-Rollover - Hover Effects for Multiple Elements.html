@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+         @import url("https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=PT+Sans+Narrow:wght@700&family=Raleway:wght@900&display=swap");
+        * {
+        position: relative;
+        }
+        body {
+        color: white;
+        font-family: sans-serif;
+        background: rgb(34, 32, 32);
+        background: radial-gradient(
+            circle,
+            rgba(34, 32, 32, 1) 0%,
+            rgba(0, 0, 0, 1) 100%
+        );
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        margin: 50px;
+        }
+
+        .item {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        }
+
+        .dot {
+        width: 20px;
+        height: 20px;
+        background-color: #333;
+        border-radius: 50%;
+        margin-right: 10px;
+        }
+
+        .text {
+        color: #777;
+        font-family: Raleway;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin: 4px;
+        font-size: 40px;
+        white-space: nowrap;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="item">
+        <div class="dot"></div>
+        <div class="text">home</div>
+    </div>
+    <div class="item">
+        <div class="dot"></div>
+        <div class="text">home</div>
+    </div>
+    <div class="item">
+        <div class="dot"></div>
+        <div class="text">home</div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+    <script>
+        //Bu derste bir önceki derste yaptığımız örneği birden fazla elemente uygulayacağız.
+        
+        const items = document.querySelectorAll(".item") //Öncelikle querySelector yerine querySelectorAll kullandık çünkü birden fazla item classına sahip elementimiz bulunuyor.
+
+        gsap.defaults({duration:0.3}); //Varsayılan duration değerini 0.3 saniye yaptık
+
+        items.forEach((item,index) => { //item classına sahip elementlere ulaşmak için foreach kullandık
+            const animation = gsap.timeline({paused:true})
+                .to(item.querySelector(".text"), {color:"white", x:20, scale:1.3}) //to metodumuzu .to(".text", {.......}) şeklinde yazmış olsaydık herhangi bir item elementi hover olduğunda tüm .text ve .dotlar hover olmuş gibi animasyon oynatılacakt.Biz ise hover olan item elementinin içerisindeki .dot ve .text için animasyonumuzu oynatmak istediğimizden dolayı item.querySelector() ile hover olan item elementinin içindeki .dot ve .text için animasyonumuzu oynatmış olduk.
+                .to(item.querySelector(".dot"), {backgroundColor:"#F93", scale:1.5}, 0)
+
+            item.addEventListener("mouseenter", () => animation.play())
+            item.addEventListener("mouseleave", () => animation.reverse())
+        })
+    </script>
+</body>
+</html>

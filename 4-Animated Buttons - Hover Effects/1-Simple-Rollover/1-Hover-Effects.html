@@ -23,13 +23,13 @@
         margin: 50px;
         }
 
-        .item {
+        .items {
         display: flex;
         align-items: center;
         cursor: pointer;
         }
 
-        .dot {
+        .dots {
         width: 20px;
         height: 20px;
         background-color: #333;
@@ -37,7 +37,7 @@
         margin-right: 10px;
         }
 
-        .text {
+        .texts {
         color: #777;
         font-family: Raleway;
         font-weight: 700;
@@ -50,9 +50,13 @@
     </style>
 </head>
 <body>
-    <div class="item">
-        <div class="dot"></div>
-        <div class="text">home</div>
+      <div class="item items">
+        <div class="dot dots"></div>
+        <div class="text texts">home</div>
+      </div>
+      <div class="item2 items">
+        <div class="dot2 dots"></div>
+        <div class="text2 texts">home</div>
       </div>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
       <script>
@@ -63,17 +67,21 @@
 
         item.addEventListener("mouseenter", () => tween.play());
         item.addEventListener("mouseleave", () => tween.reverse())
+
+
+
         //Burada oluşturduğumuz örnek ise yukarudaki örnekten farklı olarak bir timeline içeriyor böylece animasyonumuzu daha düzenli
-        // const item = document.querySelector(".item");
+        //ve kolay bir şekilde yönetebiliyoruz.
+        const item2 = document.querySelector(".item2");
+        console.log(item2);
+        gsap.defaults({duration:0.3})
 
-        // gsap.defaults({duration:0.3})
+        const animation = gsap.timeline({paused:true})
+        .to(".dot2",{backgroundColor:"red", scale:1.5})
+        .to(".text2", {color:"white", x:15}, "<0.2")
 
-        // const animation = gsap.timeline({paused:true})
-        // .to(".dot",{backgroundColor:"red"})
-        // .to(".text", {color:"white"}, "<0.2")
-
-        // item.addEventListener("mouseenter", () => animation.play());
-        // item.addEventListener("mouseleave", () => animation.reverse())
+        item2.addEventListener("mouseenter", () => animation.play());
+        item2.addEventListener("mouseleave", () => animation.reverse())
       </script>
 </body>
 </html>
