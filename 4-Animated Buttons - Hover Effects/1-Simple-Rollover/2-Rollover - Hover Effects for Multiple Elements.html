@@ -72,7 +72,8 @@
 
         items.forEach((item,index) => { //item classına sahip elementlere ulaşmak için foreach kullandık
             const animation = gsap.timeline({paused:true})
-                .to(item.querySelector(".text"), {color:"white", x:20, scale:1.3}) //to metodumuzu .to(".text", {.......}) şeklinde yazmış olsaydık herhangi bir item elementi hover olduğunda tüm .text ve .dotlar hover olmuş gibi animasyon oynatılacakt.Biz ise hover olan item elementinin içerisindeki .dot ve .text için animasyonumuzu oynatmak istediğimizden dolayı item.querySelector() ile hover olan item elementinin içindeki .dot ve .text için animasyonumuzu oynatmış olduk.
+            //to metodumuzu .to(".text", {.......}) şeklinde yazmış olsaydık herhangi bir item elementi hover olduğunda tüm .text ve .dotlar hover olmuş gibi animasyon oynatılacakt.Biz ise hover olan item elementinin içerisindeki .dot ve .text için animasyonumuzu oynatmak istediğimizden dolayı item.querySelector() ile hover olan item elementinin içindeki .dot ve .text için animasyonumuzu oynatmış olduk.
+                .to(item.querySelector(".text"), {color:"white", x:10, scale:1.3, transformOrigin: "left center"})//Burada verdiğimiz x ve scale değeri animasyonun düzgün olması için varsayılan değer olan merkezden değilde elementin en sol ortasından oynatılmasını tranformOrigin ile saplamış olduk
                 .to(item.querySelector(".dot"), {backgroundColor:"#F93", scale:1.5}, 0)
 
             item.addEventListener("mouseenter", () => animation.play())
