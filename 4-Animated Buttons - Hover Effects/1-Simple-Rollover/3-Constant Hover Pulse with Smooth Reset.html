@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin:0;
+            height:100vh;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background:#E1F5FE;
+        }
+
+        .banner {
+            background:white;
+            position:relative;
+            width:300px;
+            height:250px;
+            border:1px solid #aaa;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            
+            background-image: url("https://assets.codepen.io/32887/pexels-asad-photo-maldives-1320674.jpg");
+            background-size:cover;
+        }
+
+        .cta {
+            cursor:pointer;
+            position:absolute;
+            bottom:10px;
+            right:10px;
+            border:none;
+            padding:18px;
+            border-radius:12px;
+            background-color:#43A047;
+            color:white;
+            font-size:20px;
+            will-change:transform;
+            transform:scale(0.8);
+            transform-origin: right bottom;
+        }
+
+        h2 {
+            font-weight:800;
+            text-align:center;
+            color:white;
+            font-family:sans-serif;
+            font-size:30px;
+            text-shadow:1px 1px 3px #333;
+        }
+
+        h2 span {
+            font-size:40px;
+        }
+
+        /* Photo by Asad Photo Maldives from Pexels 
+        https://www.pexels.com/photo/seashore-1320674/
+        */
+    </style>
+</head>
+<body>
+    <div class="banner">
+        <h2>YOUR DREAM<br> <span>VACATION</span></h2>
+        <button class="cta">Book Now</button>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+    <script>
+        //Bazen yapmak istediğimiz etkileşimli animasyonları yapmanın kolay olduğunu düşünürüz.Fakat yapmaya başladığımızda hemen
+        //bu animasyonları yapmanın aslında belirli bir ustalık gerektirdiğini anlarız.
+
+        //Tekrar eden animasyonlarda animasyon kolayca kesintiye uğrayabilir ve sıklıkla oynatılırken resetlenebilir.
+
+        //Genelde bu animasyonlar click veya mouseover-mouseleave olduğu süre boyunca elementin scale olması veya animasyonun 
+        //ileri geri oynatılması gibi gerçekleşir.
+
+        //Bununla başa çıkmanın birçok yolu olmasına rağmen son zamanlarda aşağıdakilerin kullanılmasını gerektirmeyen temel bir yaklaşım
+        //bulma konusunda zorlanabiliriz.
+        //-callbacks with custom custom logic
+        //-tweening progress() or totalProgress() 
+        //-or overwrite modes 
+
+        //Bu konuların tümü diğer kurslarda ve daha gelişmiş etkileşimli animasyonlar bağlamında ele alınmaktadır, 
+        //ancak yine de bugün odak noktası işleri basit tutmaktır.
+
+        //Her ne kadar bugün elde ettiğimiz kod oldukça basit olsa da, bu derste öğreneceklerimizin pek çok değeri var.
+        //-Daha yumuşak animasyonlar için css will-change kullanacağız
+        //-scale kullanırken neden elementlerimizi örneğin 0.8 den maksimum 1 e büyütmemiz gerektiğini.
+        //-Animasyona yanlış yaklaşım
+        //-Kısaca overwrite modlarından söz edeceğiz.
+
+
+        //Aşağıda scale olan bir tween oluşturduk ve bu tweeni mouseenter ile oynattık.Fakat biz bu tweenin bir kere oynayıp durmasını 
+        //değilde mouseenter olduğu sürece devamlı tekrar etmesini istiyoruz.CONSTANT HOVER PULSE başlığı altında bu animasyonu
+        //oluşturacağız.
+
+        //BASIC HOVER PULSE
+        // const cta = document.querySelector(".cta")
+
+        // const scaleTween = gsap.to(cta, {scale:1, repeat:1, yoyo:true, paused:true});
+
+        // cta.addEventListener("mouseenter", function() {
+        //     scaleTween.restart()
+        // })
+
+        //CONSTANT HOVER PULSE
+
+        //Öncelikle scale değerimizi 2 yaparsak butonumuz scale olurken içerisindeki textin titrediğini ve bozulduğunu görebiliriz.
+        //Bunun önüne geçebilmek için transform yani scale değeri verdiğimiz element de css will-change özelliğini kullanacağız.(satır:42)
+        //“will-change: transform;” CSS özelliği, tarayıcıya elementte ki belirli bir özelliğin değişeceğini bildirir ve böylece tarayıcı ilgili 
+        //optimizasyonları yapabilir.Böylece animasyonumuz daha yumuşak gözükür.
+
+        //scale değerimiz 1 den yüksek olduğunda örenğin elementi 1.5 gibi bie değere scale ettiğimiz zaman elementin içindeki yazıların
+        //etrafında biraz bulşanıklaşma görürüz.Bunun önüne geçmek için ise elementin font sizeını ve paddingini olması gerektiğinden
+        //biraz daha büyütüp sonrasında elemente örneğin scale(0.6) gibi bir değer vererek olması gerektiği boyuta ayarladıktan sonra
+        //scale(1) değerine set edersek element içerisindeki yazıları daha net hale getirmiş oluruz.
+
+        //Yukarıdaki örenğimize aşağıda sırasıyla eklemeler yapacağız
+        //repeat değerini 15 yaptık.Fakat mouseu dışarı çektiğimmizde dahi animasyon repeat değeri kadar oynamaya devam ediyor.
+        //-1 yazarsak sürekli oynamaya devam ediyor.Fakat biz sadece mouseenter olduğunda oynatılmasını istiyorduk.
+        //Bunu çözmek için moueleave fonksiyonu yazıyoruz ve mouseleave olduğunda scaleTween i reverse ediyoruz.
+        //Bu seferde bir süre mouseenter olduktan sonra mouseleave olsa dahi animasyon oynamaya yine devam ediyor.
+        //Bunun sebebi repeat değeri olan bir animasyon 8 kere ileri oynatılırsa reverse() animasyon kendini kaç kere tekrar ettiyse
+        //o kadar anbimasyonu tekrar oynatarak geriye gidecektir.
+
+        //mouseleave fonksiyonu içerisine yazdığımız scaleTween.reverse() i sildik.Bunun yerine gsap.to(cta, {scale:0.8}) yazdık
+        //Böylece mouseleave olduğunda animasyon başlangıç değeri olan scale 0.8 e dönebilir.Bunu yaptıktan sonra
+        //mouseenter olduğunda yine birşey değişmediğini ve animasyonun mouseleave olduğunda dahi animasyonun oynatılmaya devam ettiğini
+        //görürüz.Bunun sebebi biz mouseleave olduğunda mouseenter olduktan sonra oynatılmaya başlanan scaleTween animasyonumuzun
+        //oynatılmaya devam etmesidir.
+
+        //Bu noktada overwrite modes animasyonlar arasındaki çakışmaları önlememizi sağlar.Fakat bunun için özel ve daha kapsamlı dersler vardır.
+        //Fakat overwrite ile de sorunumuzu şu şekilde çözebiliriz.gsap.to(cta, {scale:0.8,overwrite:true}) bunu kullandıktan sonra tweeni kill ettiği için tekrar mouseenter olunca tween çalışmaz.
+        //Sadece ufak bir örnekle bu konuya değinmiş olduk.
+
+        //Şimdi çözüme kendi yöntemimizle devam edelim.
+        //öncelikle mouseleave oldupğudnda scaleTweeni pause ederek durduruyoruz ve başlangıç değerine döndürüyoruz böylece sorunumuz çözülmüş
+        //oluyor
+
+        //B-SİDES BONUSES AND ODDİTİES Derslerinde bu konular çok daha detaylı bir şekilde işlenmeketedir.
+        const cta = document.querySelector(".cta")
+
+        const scaleTween = gsap.to(cta, {scale:1, repeat:15, yoyo:true, paused:true});
+
+        cta.addEventListener("mouseenter", function() {
+            scaleTween.restart()
+        })
+
+        cta.addEventListener("mouseleave", function() {
+            // scaleTween.reverse()
+            // gsap.to(cta, {scale:0.8,overwrite:true})
+            scaleTween.pause()
+            gsap.to(cta, {scale:0.8})
+        })
+    </script>
+</body>
+</html>
