@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html, body {
+            width:100%;
+            height:100%;
+            font-family:Kanit;
+            color:white;
+            margin:0;
+        }
+
+        body {
+            display:flex;
+            justify-content:center;
+            background:#1d1d1d;
+            overflow:hidden;
+            align-items:center;
+        }
+        .wrapper {
+            height:100%;
+            display:flex;
+            align-items:center;
+            width:500px;
+            visibility:hidden;
+            perspective:400px;
+        }
+
+
+        p {
+            font-size:36px;
+        }
+
+        button {
+            position:fixed; top:10px;
+        }
+
+        body {
+            overflow:hidden;
+            background-image:linear-gradient(12deg, rgba(193, 193, 193,0.05) 0%, rgba(193, 193, 193,0.05) 2%,rgba(129, 129, 129,0.05) 2%, rgba(129, 129, 129,0.05) 27%,rgba(185, 185, 185,0.05) 27%, rgba(185, 185, 185,0.05) 66%,rgba(83, 83, 83,0.05) 66%, rgba(83, 83, 83,0.05) 100%),linear-gradient(321deg, rgba(240, 240, 240,0.05) 0%, rgba(240, 240, 240,0.05) 13%,rgba(231, 231, 231,0.05) 13%, rgba(231, 231, 231,0.05) 34%,rgba(139, 139, 139,0.05) 34%, rgba(139, 139, 139,0.05) 71%,rgba(112, 112, 112,0.05) 71%, rgba(112, 112, 112,0.05) 100%),linear-gradient(236deg, rgba(189, 189, 189,0.05) 0%, rgba(189, 189, 189,0.05) 47%,rgba(138, 138, 138,0.05) 47%, rgba(138, 138, 138,0.05) 58%,rgba(108, 108, 108,0.05) 58%, rgba(108, 108, 108,0.05) 85%,rgba(143, 143, 143,0.05) 85%, rgba(143, 143, 143,0.05) 100%),linear-gradient(96deg, rgba(53, 53, 53,0.05) 0%, rgba(53, 53, 53,0.05) 53%,rgba(44, 44, 44,0.05) 53%, rgba(44, 44, 44,0.05) 82%,rgba(77, 77, 77,0.05) 82%, rgba(77, 77, 77,0.05) 98%,rgba(8, 8, 8,0.05) 98%, rgba(8, 8, 8,0.05) 100%),linear-gradient(334deg, hsl(247,0%,2%),hsl(247,0%,2%))
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <p>The Only Way To Do Great Work Is To Love What You Do. If You Haven’t Found It Yet, Keep Looking. Don’t Settle.</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.4/gsap.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/GSDevTools3.min.js"></script>
+    <script src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/SplitText3.min.js"></script> <!--SplitText Pluginimizi import ettik-->
+
+    <script>
+        //Bu derste satır satır böleceğiz aynı zamanda css de perspective ve transformOriginin z değerinide kullancağız.
+        //transformOrigin de ki 3. parametre z ekseni içindir.wrapper elementi için css de perspective değeri verdik.
+        
+        let split 
+        let animation = gsap.timeline()
+
+        function init() {
+            split = new SplitText("p", {type:"lines"}) //lines parametresini kullandık
+            gsap.set(".wrapper",{autoAlpha:1})
+            animation.from(split.lines,{opacity:0, rotationX:-90, rotationY:-80, stagger:0.2, transformOrigin:"50% 50% -200"})
+            GSDevTools.create()
+        }
+
+        window.addEventListener("load", init)
+    </script>
+</body>
+</html>
